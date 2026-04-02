@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Garden Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef7 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #1a237e 0%, #0d1753 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-content h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-content p {
+            font-size: 14px;
+            opacity: 0.9;
+            color: #c5cae9;
+        }
+
+        .user-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            color: #1a237e;
+            font-weight: 700;
+        }
+
+        .stat-subtext {
+            font-size: 12px;
+            color: #3f51b5;
+            margin-top: 8px;
+        }
+
+        .admin-functions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .function-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #1a237e;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .function-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            border-left-color: #3f51b5;
+        }
+
+        .function-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .function-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a237e;
+            margin-bottom: 8px;
+        }
+
+        .function-desc {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .function-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #1a237e 0%, #0d1753 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .function-link:hover {
+            background: linear-gradient(135deg, #3f51b5 0%, #1a237e 100%);
+            box-shadow: 0 5px 15px rgba(63, 81, 181, 0.3);
+            transform: translateX(3px);
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 5px solid #f57c00;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .welcome-banner h2 {
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .welcome-banner p {
+            color: #d84315;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .logout-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .logout-btn:hover {
+            background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+            box-shadow: 0 8px 20px rgba(211, 47, 47, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .header-content h1 {
+                flex-direction: column;
+                font-size: 28px;
+            }
+
+            .stats-grid, .admin-functions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-header {
+                padding: 25px 15px;
+            }
+
+            .header-content h1 {
+                font-size: 22px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+
+            .function-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="header-content">
+                <h1>⚙️ Admin Dashboard</h1>
+                <p>Garden Store Administration Portal</p>
+            </div>
+            <div class="user-badge">
+                👤 Admin User
+            </div>
+        </div>
+
+        <div class="welcome-banner">
+            <h2>📊 Welcome to the Admin Portal</h2>
+            <p>This dashboard provides you with comprehensive administration tools to manage the Garden Store platform. Monitor site statistics, manage users, handle orders, and configure system settings.</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-label">Total Users</div>
+                <div class="stat-value">1,248</div>
+                <div class="stat-subtext">↑ 42 new this month</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">🛍️</div>
+                <div class="stat-label">Total Orders</div>
+                <div class="stat-value">8,563</div>
+                <div class="stat-subtext">↑ $124,500 revenue</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">📦</div>
+                <div class="stat-label">Active Products</div>
+                <div class="stat-value">3,421</div>
+                <div class="stat-subtext">↑ 156 added this month</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-label">Avg Rating</div>
+                <div class="stat-value">4.8</div>
+                <div class="stat-subtext">From 12,400+ reviews</div>
+            </div>
+        </div>
+
+        <h2 style="color: #1a237e; margin-bottom: 20px; font-size: 22px;">Admin Functions</h2>
+
+        <div class="admin-functions">
+            <div class="function-card">
+                <div class="function-icon">👥</div>
+                <div class="function-title">User Management</div>
+                <div class="function-desc">Manage customer and seller accounts, verify profiles, handle account issues.</div>
+                <a href="#" class="function-link">Go to Users →</a>
+            </div>
+
+            <div class="function-card">
+                <div class="function-icon">📦</div>
+                <div class="function-title">Inventory Management</div>
+                <div class="function-desc">Monitor stock levels, approve new products, manage categories and listings.</div>
+                <a href="#" class="function-link">Go to Inventory →</a>
+            </div>
+
+            <div class="function-card">
+                <div class="function-icon">📊</div>
+                <div class="function-title">Analytics & Reports</div>
+                <div class="function-desc">View sales reports, user behavior analytics, and performance metrics.</div>
+                <a href="#" class="function-link">View Reports →</a>
+            </div>
+
+            <div class="function-card">
+                <div class="function-icon">💳</div>
+                <div class="function-title">Payments & Payouts</div>
+                <div class="function-desc">Manage payments, process payouts to sellers, and audit transactions.</div>
+                <a href="#" class="function-link">Manage Payments →</a>
+            </div>
+
+            <div class="function-card">
+                <div class="function-icon">⚙️</div>
+                <div class="function-title">System Settings</div>
+                <div class="function-desc">Configure platform settings, manage fees, set policies, and integrations.</div>
+                <a href="#" class="function-link">Go to Settings →</a>
+            </div>
+
+            <div class="function-card">
+                <div class="function-icon">🔒</div>
+                <div class="function-title">Security & Logs</div>
+                <div class="function-desc">Monitor security logs, view admin activities, manage security policies.</div>
+                <a href="#" class="function-link">View Logs →</a>
+            </div>
+
+            <div class="function-card">
+                <div class="function-icon">📧</div>
+                <div class="function-title">Communications</div>
+                <div class="function-desc">Send notifications, manage email templates, and handle support tickets.</div>
+                <a href="#" class="function-link">Go to Communications →</a>
+            </div>
+
+            <div class="function-card">
+                <div class="function-icon">🚨</div>
+                <div class="function-title">Disputes & Support</div>
+                <div class="function-desc">Review disputes, handle complaints, and manage customer support issues.</div>
+                <a href="#" class="function-link">View Disputes →</a>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+
+        <div class="footer">
+            <p>Garden Store Admin Portal © 2024 | Last login: Today at 10:30 AM</p>
+            <p style="font-size: 12px; color: #ccc;">For security issues, contact security@gardenstore.com</p>
+        </div>
+    </div>
+
+    <script>
+        function handleLogout() {
+            const confirmed = confirm('Are you sure you want to logout?');
+            if (confirmed) {
+                alert('You have been logged out successfully.');
+                window.location.href = '/project/seller.html';
+            }
+        }
+    </script>
+</body>
+</html>

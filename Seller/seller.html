@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Portal - Garden Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #2d5016;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .portal-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .portal-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .portal-card-header {
+            padding: 30px;
+            color: white;
+            text-align: center;
+        }
+
+        .portal-card.seller .portal-card-header {
+            background: linear-gradient(135deg, #2d5016 0%, #1a3a0a 100%);
+        }
+
+        .portal-card.admin .portal-card-header {
+            background: linear-gradient(135deg, #1a237e 0%, #0d1753 100%);
+        }
+
+        .portal-card-header h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .portal-card-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .portal-card-body {
+            padding: 30px;
+        }
+
+        .portal-card-body p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2d5016 0%, #1a3a0a 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #76ff03 0%, #5fd902 100%);
+            color: #1a3a0a;
+            box-shadow: 0 8px 20px rgba(118, 255, 3, 0.3);
+            transform: scale(1.05);
+        }
+
+        .btn-admin {
+            background: linear-gradient(135deg, #1a237e 0%, #0d1753 100%);
+            color: white;
+        }
+
+        .btn-admin:hover {
+            background: linear-gradient(135deg, #3f51b5 0%, #1a237e 100%);
+            box-shadow: 0 8px 20px rgba(63, 81, 181, 0.3);
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #2d5016;
+            border: 2px solid #2d5016;
+        }
+
+        .btn-secondary:hover {
+            background: #f9fff6;
+            border-color: #76ff03;
+            color: #76ff03;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-link a {
+            color: #2d5016;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #76ff03;
+            text-decoration: underline;
+        }
+
+        .features {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .features h3 {
+            color: #2d5016;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            padding: 15px;
+            background: #f9fff6;
+            border-left: 4px solid #76ff03;
+            border-radius: 6px;
+        }
+
+        .feature-item h4 {
+            color: #2d5016;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .feature-item p {
+            color: #666;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .portal-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌿 Garden Portal</h1>
+            <p>Choose your role to get started</p>
+        </div>
+
+        <div class="portal-cards">
+            <!-- Seller Portal -->
+            <div class="portal-card seller">
+                <div class="portal-card-header">
+                    <h2>🏪 Seller Portal</h2>
+                    <p>Manage your garden products</p>
+                </div>
+                <div class="portal-card-body">
+                    <p>Join our seller community and start selling premium garden products, seeds, and plants to thousands of customers nationwide.</p>
+                    <div class="button-group">
+                        <a href="/project/seller-login.html" class="btn btn-primary">Login</a>
+                        <a href="/project/seller-register.html" class="btn btn-secondary">Register</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Portal -->
+            <div class="portal-card admin">
+                <div class="portal-card-header">
+                    <h2>⚙️ Admin Portal</h2>
+                    <p>Website administration</p>
+                </div>
+                <div class="portal-card-body">
+                    <p>Access the administrative dashboard to manage sellers, products, orders, and monitor overall platform performance.</p>
+                    <div class="button-group">
+                        <a href="/project/admin-login.html" class="btn btn-admin">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features">
+            <h3>Why Join Our Platform?</h3>
+            <div class="features-list">
+                <div class="feature-item">
+                    <h4>📊 Business Analytics</h4>
+                    <p>Track sales, revenue, and customer behavior with real-time analytics</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🛒 Easy Management</h4>
+                    <p>Manage inventory, orders, and shipping all in one place</p>
+                </div>
+                <div class="feature-item">
+                    <h4>💰 Competitive Payouts</h4>
+                    <p>Get paid quickly with our transparent commission structure</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🌍 Wide Reach</h4>
+                    <p>Access to thousands of customers across the country</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📱 Mobile Friendly</h4>
+                    <p>Manage your business from anywhere with our mobile app</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🤝 Support Team</h4>
+                    <p>24/7 dedicated support for all your questions</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="/project/plant-care/plantcare.html">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

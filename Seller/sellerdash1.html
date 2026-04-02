@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SellerHub | E-Commerce Seller Website</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ------------------ GLOBAL ------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+body {
+  background: #f4f6f5;
+  scroll-behavior: smooth;
+}
+section {
+  padding: 60px 30px;
+}
+h2 {
+  margin-bottom: 20px;
+}
+
+/* ------------------ NAVBAR ------------------ */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #1e5631;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+.profile {
+  position: relative;
+  cursor: pointer;
+}
+.dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: white;
+  color: black;
+  width: 150px;
+  border-radius: 5px;
+}
+.dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+}
+.dropdown a:hover {
+  background: #eee;
+}
+
+/* ------------------ LAYOUT ------------------ */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+button {
+  background: #4caf50;
+  border: none;
+  padding: 8px 12px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.auth-buttons a{
+    text-decoration: none;
+    color: #eee;
+}
+/* ------------------ HERO ------------------ */
+#home {
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+              url("https://images.unsplash.com/photo-1466692476868-aef1dfb1e735");
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding-top: 120px;
+}
+#home h1 {
+  font-size: 40px;
+}
+#home p {
+  margin: 15px 0;
+}
+  /* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+/* -------- AUTH BUTTONS -------- */
+.auth-buttons button {
+  background: #4caf50;
+  border: none;
+  padding: 7px 12px;
+  margin-left: 8px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* -------- MODAL -------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  padding: 25px;
+  width: 320px;
+  border-radius: 8px;
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+  <div class="logo">🌱 SellerHub</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#orders">Orders</a></li>
+    <li><a href="#payments">Payments</a></li>
+    <li><a href="#support">Support</a></li>
+  </ul>
+  <div class="auth-buttons">
+  <button onclick="openLogin()"><a href="/project/plant-care/selllogin.html">Login</a></button>
+  <button onclick="openRegister()"><a href="/project/plant-care/sellreg.html">Register</a></button>
+</div>
+</nav>
+
+<!-- ================= HOME ================= -->
+<section id="home">
+  <h1>Grow Your Garden Business Online</h1>
+  <p>Manage products, orders & payments in one dashboard</p>
+</section>
+
+<!-- ================= DASHBOARD ================= -->
+<section id="dashboard">
+  <h2>Dashboard Overview</h2>
+  <div class="cards">
+    <div class="card">Total Products<br><b>25</b></div>
+    <div class="card">Total Orders<br><b>120</b></div>
+    <div class="card">Revenue<br><b>₹45,000</b></div>
+    <div class="card">Pending Orders<br><b>8</b></div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section id="products">
+  <h2>Products</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Rose Plant</h3>
+      <p>₹299</p>
+      <button onclick="addOrder('Rose Plant',299)">Add Order</button>
+    </div>
+    <div class="card">
+      <h3>Tomato Seeds</h3>
+      <p>₹99</p>
+      <button onclick="addOrder('Tomato Seeds',99)">Add Order</button>
+    </div>
+    <div class="card">
+      <h3>Garden Tool Set</h3>
+      <p>₹899</p>
+      <button onclick="addOrder('Garden Tool Set',899)">Add Order</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ORDERS ================= -->
+<section id="orders">
+  <h2>Orders</h2>
+  <div id="orderList" class="card">
+    No orders yet
+  </div>
+</section>
+
+<!-- ================= PAYMENTS ================= -->
+<section id="payments">
+  <h2>Payments</h2>
+  <div class="cards">
+    <div class="card">Total Earnings<br><b>₹45,000</b></div>
+    <div class="card">This Month<br><b>₹12,000</b></div>
+    <div class="card">Pending<br><b>₹3,200</b></div>
+  </div>
+</section>
+
+<!-- ================= SUPPORT ================= -->
+<section id="support">
+  <h2>Support</h2>
+  <div class="card">
+    <h3>FAQs</h3>
+    <p>✔ How to add products?</p>
+    <p>✔ How payments are processed?</p>
+  </div><br>
+  <div class="card">
+    <h3>Contact</h3>
+    Email: support@sellerhub.com<br>
+    Phone: +91 98765 43210
+  </div>
+</section>
+
+<!-- ================= JS ================= -->
+<script>
+function toggleMenu() {
+  const d = document.getElementById("dropdown");
+  d.style.display = d.style.display === "block" ? "none" : "block";
+}
+
+let orders = [];
+
+function addOrder(product, price) {
+  orders.push(product + " - ₹" + price);
+  let html = "<h3>Order List</h3>";
+  orders.forEach(o => html += "<p>" + o + "</p>");
+  document.getElementById("orderList").innerHTML = html;
+}
+</script>
+
+</body>
+</html>

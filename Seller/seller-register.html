@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Registration - Garden Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .register-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 550px;
+            width: 100%;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .register-header {
+            background: linear-gradient(135deg, #2d5016 0%, #1a3a0a 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .register-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .register-header p {
+            font-size: 14px;
+            opacity: 0.9;
+            color: #d4f1d4;
+        }
+
+        .register-body {
+            padding: 40px 30px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2d5016;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #76ff03;
+            box-shadow: 0 0 0 3px rgba(118, 255, 3, 0.1);
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        .password-info {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            padding: 8px 10px;
+            background: #f9fff6;
+            border-left: 3px solid #76ff03;
+            border-radius: 4px;
+        }
+
+        .terms {
+            display: flex;
+            gap: 8px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+
+        .terms input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+            margin-top: 2px;
+        }
+
+        .terms label {
+            margin: 0;
+            font-weight: normal;
+            color: #666;
+        }
+
+        .terms a {
+            color: #2d5016;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms a:hover {
+            color: #76ff03;
+            text-decoration: underline;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #2d5016 0%, #1a3a0a 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .register-btn:hover {
+            background: linear-gradient(135deg, #76ff03 0%, #5fd902 100%);
+            color: #1a3a0a;
+            box-shadow: 0 8px 20px rgba(118, 255, 3, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #999;
+            font-size: 13px;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+            z-index: -1;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 10px;
+        }
+
+        .social-register {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            border-color: #76ff03;
+            background: #f9fff6;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #2d5016;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .login-link a:hover {
+            color: #76ff03;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        .back-link a {
+            color: #999;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: #2d5016;
+        }
+
+        @media (max-width: 480px) {
+            .register-container {
+                border-radius: 10px;
+            }
+
+            .register-header {
+                padding: 30px 20px;
+            }
+
+            .register-header h1 {
+                font-size: 26px;
+            }
+
+            .register-body {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .social-register {
+                flex-direction: column;
+            }
+
+            .social-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-header">
+            <h1>🏪 Register Your Store</h1>
+            <p>Start selling with Garden Store</p>
+        </div>
+        <div class="register-body">
+            <form class="register-form" onsubmit="handleRegister(event)">
+                <!-- Store Information -->
+                <div class="form-group">
+                    <label for="storename">Store Name</label>
+                    <input type="text" id="storename" name="storename" placeholder="Your Garden Store" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fname">Owner First Name</label>
+                        <input type="text" id="fname" name="fname" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lname">Owner Last Name</label>
+                        <input type="text" id="lname" name="lname" placeholder="Doe" required>
+                    </div>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="seller@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required>
+                </div>
+
+                <!-- Business Information -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="New Delhi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" placeholder="Delhi" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Product Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="plants">Indoor/Outdoor Plants</option>
+                        <option value="seeds">Seeds</option>
+                        <option value="pots">Pots & Containers</option>
+                        <option value="fertilizers">Fertilizers & Soil</option>
+                        <option value="tools">Gardening Tools</option>
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+
+                <!-- Credentials -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                    <div class="password-info">
+                        ✓ At least 8 characters | Contains letters and numbers
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="cpassword">Confirm Password</label>
+                    <input type="password" id="cpassword" name="cpassword" placeholder="Re-enter your password" required>
+                </div>
+
+                <!-- Terms -->
+                <div class="terms">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms & Conditions</a>, <a href="#">Seller Agreement</a>, and <a href="#">Privacy Policy</a></label>
+                </div>
+
+                <button type="submit" class="register-btn">Create Your Store</button>
+            </form>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <div class="social-register">
+                <button class="social-btn" onclick="registerWithGoogle()">Google</button>
+                <button class="social-btn" onclick="registerWithFacebook()">Facebook</button>
+            </div>
+
+            <div class="login-link">
+                Already have a store? <a href="/project/seller-login.html">Login here</a>
+            </div>
+
+            <div class="back-link">
+                <a href="/project/seller.html">← Back to Seller Portal</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const cpassword = document.getElementById('cpassword').value;
+            
+            if (password !== cpassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long!');
+                return;
+            }
+
+            const storename = document.getElementById('storename').value;
+            const email = document.getElementById('email').value;
+            
+            console.log('Seller registration successful:', { storename, email });
+            alert(`Welcome ${storename}! Your store registration is complete. Please verify your email.`);
+            
+            // Redirect to login page
+            window.location.href = '/project/seller-login.html';
+        }
+
+        function registerWithGoogle() {
+            alert('Google registration functionality would be implemented here');
+        }
+
+        function registerWithFacebook() {
+            alert('Facebook registration functionality would be implemented here');
+        }
+    </script>
+</body>
+</html>

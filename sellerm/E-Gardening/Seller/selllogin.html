@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Seller Login | SellerHub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #1e5631, #4caf50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  background: white;
+  width: 360px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+h2 {
+  text-align: center;
+  color: #1e5631;
+}
+p {
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 12px;
+}
+label {
+  font-size: 14px;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+input:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  background: #4caf50;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.btn:hover {
+  background: #3e8e41;
+}
+
+.extra {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+.extra a {
+  color: #1e5631;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.extra a:hover {
+  text-decoration: underline;
+}
+
+#registerBox,
+#forgotBox {
+  display: none;
+}
+
+@media(max-width: 400px) {
+  .container {
+    width: 90%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- ===== LOGIN ===== -->
+  <div id="loginBox">
+    <h2>Seller Login</h2>
+    <p>Login to manage your store</p>
+
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" id="loginEmail">
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="loginPass">
+    </div>
+
+    <button class="btn" onclick="loginSeller()">Login</button>
+
+    <div class="extra">
+      New Seller? <a onclick="showRegister()">Create Account</a><br><br>
+      <a onclick="showForgot()">Forgot Password?</a>
+    </div>
+  </div>
+
+  <!-- ===== REGISTER ===== -->
+  <div id="registerBox">
+    <h2>Create Seller Account</h2>
+    <p>Register your business</p>
+
+    <div class="input-group">
+      <label>Seller Name</label>
+      <input type="text" id="name">
+    </div>
+
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" id="regEmail">
+    </div>
+
+    <div class="input-group">
+      <label>Phone</label>
+      <input type="tel" id="phone">
+    </div>
+
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="regPass">
+    </div>
+
+    <button class="btn" onclick="registerSeller()">Register</button>
+
+    <div class="extra">
+      Already have an account? <a onclick="showLogin()">Login</a>
+    </div>
+  </div>
+
+  <!-- ===== FORGOT PASSWORD ===== -->
+  <div id="forgotBox">
+    <h2>Forgot Password</h2>
+    <p>Enter your registered email</p>
+
+    <div class="input-group">
+      <label>Email</label>
+      <input type="email" id="forgotEmail">
+    </div>
+
+    <button class="btn" onclick="resetPassword()">Reset Password</button>
+
+    <div class="extra">
+      <a onclick="showLogin()">Back to Login</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showRegister() {
+  hideAll();
+  document.getElementById("registerBox").style.display = "block";
+}
+function showLogin() {
+  hideAll();
+  document.getElementById("loginBox").style.display = "block";
+}
+function showForgot() {
+  hideAll();
+  document.getElementById("forgotBox").style.display = "block";
+}
+function hideAll() {
+  loginBox.style.display = "none";
+  registerBox.style.display = "none";
+  forgotBox.style.display = "none";
+}
+
+function loginSeller() {
+  if(loginEmail.value === "" || loginPass.value === "") {
+    alert("Please enter email and password");
+  } else {
+    alert("Login Successful!");
+  }
+}
+
+function registerSeller() {
+  if(name.value === "" || regEmail.value === "" || phone.value === "" || regPass.value === "") {
+    alert("Please fill all details");
+  } else {
+    alert("Registration Successful!");
+    showLogin();
+  }
+}
+
+function resetPassword() {
+  if(forgotEmail.value === "") {
+    alert("Please enter your email");
+  } else {
+    alert("Password reset link sent to your email!");
+    showLogin();
+  }
+}
+</script>
+
+</body>
+</html>

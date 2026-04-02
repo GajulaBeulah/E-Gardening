@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Seller Registration | SellerHub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #1e5631, #4caf50);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  background: #fff;
+  width: 400px;
+  padding: 30px;
+  border-radius: 10px;
+}
+h2 {
+  text-align: center;
+  color: #1e5631;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+button {
+  width: 100%;
+  padding: 10px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background: #3e8e41;
+}
+p {
+  text-align: center;
+  margin-top: 10px;
+}
+a {
+  color: #1e5631;
+  font-weight: bold;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h2>Seller Registration</h2>
+
+  <input type="text" id="name" placeholder="Full Name">
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+  <input type="password" id="confirm" placeholder="Confirm Password">
+
+  <button onclick="register()">Register</button>
+
+  <p>Already registered? <a href="/project/plant-care/selllogin.html">Login</a></p>
+</div>
+
+<script>
+function register() {
+  let name = document.getElementById("name").value;
+  let email = document.getElementById("email").value;
+  let password = document.getElementById("password").value;
+  let confirm = document.getElementById("confirm").value;
+
+  if (name === "" || email === "" || password === "" || confirm === "") {
+    alert("Please fill all fields");
+    return;
+  }
+
+  if (password !== confirm) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  localStorage.setItem("sellerEmail", email);
+  localStorage.setItem("sellerPassword", password);
+
+  alert("Registration successful!");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
